@@ -22,12 +22,12 @@ def status_updates(data):
             net[(i+1)%N, (j-1)%N] + net[(i+1)%N, (j+1)%N])/255
             
             if net[i, j] == ON:
-                if total < 2 or total > 3:
+                if total > 5:
                     new_net[i, j] = OFF
-                elif total == 3 or total == 2:
+                elif total > 4:
                     new_net[i, j] = ON
             
-    noise = np.random.choice(vals, N * N, p=[0.20, 0.80]).reshape(N, N)
+    noise = np.random.choice(vals, N * N, p=[0.10, 0.90]).reshape(N, N)
     new_net = np.maximum(new_net, noise)
     
     net = new_net
